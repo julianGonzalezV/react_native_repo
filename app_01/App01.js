@@ -3,8 +3,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
-import Fila from './src/components/Lista/Fila' 
-
 
 export default class App extends Component {
 
@@ -40,12 +38,9 @@ export default class App extends Component {
 
   render() {
     const placesOut = this.state.places.map((place,index) => (
-      <Fila
-        key = {index}
-        parametro1 = {place}
-      />
-        
-     
+      <Text key = {index}>
+        {index+1} - {place}
+      </Text>
     ));
 
     return (
@@ -61,7 +56,7 @@ export default class App extends Component {
             style={styles.placeButton}
             onPress={this.buttonClicHandler}/>
       </View>
-      <View style = {styles.filaContainer}>
+      <View>
         {placesOut}
       </View>
     </View>
@@ -90,9 +85,6 @@ const styles = StyleSheet.create({
   },
   placeButton: {
     width: "30%"
-  },
-  filaContainer:{
-    width:"100%"
   }
 });  
 
