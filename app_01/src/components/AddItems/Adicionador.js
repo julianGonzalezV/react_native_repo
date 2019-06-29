@@ -1,14 +1,17 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native'
+import React, {Component}  from 'react';
+import { StyleSheet, Text, View, TextInput, Button} from 'react-native'
+import PropTypes from 'prop-types';
+import { ViewPropTypes } from 'react-native'
+
 
 export default class AddInput extends Component {
     static propTypes = {
-        containerStyle: PropTypes.style,
-        style: PropTypes.style,
+        containerStyle: ViewPropTypes.style,
+        style: ViewPropTypes.style,
         onChangeText: PropTypes.func,
         value: PropTypes.string,
         placeholder: PropTypes.string,
-        buttonStyle: PropTypes.style,
+        buttonStyle: ViewPropTypes.style,
         buttonOnPress :  PropTypes.func,
         buttonTitle: PropTypes.string
       }
@@ -16,11 +19,11 @@ export default class AddInput extends Component {
 
       render() {
           return(
-            <View style={styles.inputButton}>
+            <View style={this.props.containerStyle}>
                 <TextInput 
                 placeholder= {this.props.placeholder}
                 value={this.props.value} 
-                onChangeText={this.placeNameChangeHandler}
+                onChangeText={this.props.onChangeText}
                 style={this.props.style}/>
                 <Button
                     title={this.props.buttonTitle}
@@ -30,7 +33,4 @@ export default class AddInput extends Component {
             </View>
           );   
     }
-
 }
-
-

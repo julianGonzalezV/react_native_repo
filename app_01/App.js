@@ -3,10 +3,8 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
-import Fila from './src/components/Lista/Fila' 
 import Adicionador from './src/components/AddItems/Adicionador' 
 import Lista from './src/components/Lista/Lista' 
-
 
 export default class App extends Component {
 
@@ -23,6 +21,19 @@ export default class App extends Component {
     
    };
 
+
+   deleteByIndex = index =>{
+    this.setState( prevState => {
+      return{
+        // Se filtran lo items tales que el id sea diferente al que entra
+        places: prevState.places.filter((record,i)=> {
+          return i !== index //un boolean
+        })	
+      }      
+    });
+    
+   };
+
    buttonClicHandler = val =>{
     if(this.state.placeName.trim() === ""){
       return;
@@ -31,7 +42,6 @@ export default class App extends Component {
     this.setState(prevState => {
       
       return{
-        placeName: "",
         places: prevState.places.concat(prevState.placeName)
       }    
     });
@@ -41,30 +51,31 @@ export default class App extends Component {
 
 
   render() {
-    const itemList = this.state.places.map((place,index) => (
-      <Fila
-        key = {index}
-        parametro1 = {place}
-      />
-        
-     
-    ));
+    return (      
+      <View style={styles.container}>  
+      {/* comparado con el anterior no parece ahorrar muchas linea e codigo peeero considere:
+          1) Y que tal donde el html del componente sea bien grande, acá porque tenía mucahs pŕopietdades
+          2) y que tal donde desee un componente bien diámico ocmo Adicionador?, por ejemplo un grid par todo el aplicativo
+          pero que de acuerdo a la seccion cambien color, el nombre del botón etc 
 
-    return (
-      <View style={styles.container}>
+        finalmente, Esto fué una prueba peeero  si lo anterior no le compete a su proyecto entonces lleve todos los styles y configuracines 
+        al componente, ejemplo en Adicionador y ya no tendrá que mandar tantas propiedades.
+
+      */}      
         <Adicionador 
           containerStyle = {styles.inputButton}
           style = {styles.placeInput}
           onChangeText = {this.placeNameChangeHandler}
-          value = {this.placeName}
+          value = {this.state.placeName}
           placeholder = "Ingrese los valores aquí"
           buttonStyle = {styles.placeButton}
           buttonOnPress = {this.buttonClicHandler}
           buttonTitle = "Agregar"
-        />
+        />        
         <Lista 
           style = {styles.filaContainer}
-          itemList = {itemList}
+          itemList = {this.state.places}
+          onItemDeleted = {this.deleteByIndex}
         />        
     </View>
     );
@@ -75,7 +86,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 56,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
@@ -97,4 +107,6 @@ const styles = StyleSheet.create({
     width:"100%"
   }
 });  
+
+
 

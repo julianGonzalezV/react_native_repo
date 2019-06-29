@@ -1,12 +1,18 @@
 //Esto se conoce como functional component 
 
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+// no se limitey ponga todos los tipos d touchabl que quiera :) 
+// importante notar que hacer un elmento touchable es como que estuvieramos creando un boton 
+// boton finalmente es eso
 
 const fila = (props) => (
-    <View style={styles.fila}>
-        <Text>{props.parametro1}</Text>
-    </View>
+    <TouchableOpacity onPress={props.onItemPressed}>
+        <View style={styles.fila} >
+            <Text>{props.parametro1}</Text>
+        </View>
+    </TouchableOpacity>
+    
 
 );
 
