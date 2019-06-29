@@ -4,8 +4,6 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
 import Fila from './src/components/Lista/Fila' 
-import Adicionador from './src/components/AddItems/Adicionador' 
-import Lista from './src/components/Lista/Lista' 
 
 
 export default class App extends Component {
@@ -41,7 +39,7 @@ export default class App extends Component {
 
 
   render() {
-    const itemList = this.state.places.map((place,index) => (
+    const placesOut = this.state.places.map((place,index) => (
       <Fila
         key = {index}
         parametro1 = {place}
@@ -52,20 +50,20 @@ export default class App extends Component {
 
     return (
       <View style={styles.container}>
-        <Adicionador 
-          containerStyle = {styles.inputButton}
-          style = {styles.placeInput}
-          onChangeText = {this.placeNameChangeHandler}
-          value = {this.placeName}
-          placeholder = "Ingrese los valores aquí"
-          buttonStyle = {styles.placeButton}
-          buttonOnPress = {this.buttonClicHandler}
-          buttonTitle = "Agregar"
-        />
-        <Lista 
-          style = {styles.filaContainer}
-          itemList = {itemList}
-        />        
+        <View style={styles.inputButton}>
+          <TextInput 
+            placeholder= "Ingrese los valores aquí"
+            value={this.state.placeName} 
+            onChangeText={this.placeNameChangeHandler}
+            style={styles.placeInput}/>
+          <Button
+              title="Add"
+              style={styles.placeButton}
+              onPress={this.buttonClicHandler}/>
+        </View>
+        <View style = {styles.filaContainer}>
+          {placesOut}
+        </View>
     </View>
     );
   }
