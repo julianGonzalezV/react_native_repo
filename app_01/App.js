@@ -22,12 +22,12 @@ export default class App extends Component {
    };
 
 
-   deleteByIndex = index =>{
+   deleteByIndex = keyToDelete =>{
     this.setState( prevState => {
       return{
         // Se filtran lo items tales que el id sea diferente al que entra
-        places: prevState.places.filter((record,i)=> {
-          return i !== index //un boolean
+        places: prevState.places.filter((record)=> {
+          return record.key !== keyToDelete //un boolean
         })	
       }      
     });
@@ -42,7 +42,7 @@ export default class App extends Component {
     this.setState(prevState => {
       
       return{
-        places: prevState.places.concat(prevState.placeName)
+        places: prevState.places.concat({key:Math.random(), value:this.state.placeName})
       }    
     });
     

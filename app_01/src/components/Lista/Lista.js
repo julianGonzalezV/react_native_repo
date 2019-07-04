@@ -1,7 +1,7 @@
 import React, {Component}  from 'react';
 import { View, ScrollView} from 'react-native'
 import PropTypes from 'prop-types';
-import { ViewPropTypes } from 'react-native'
+import { ViewPropTypes, FlatList} from 'react-native'
 import Fila from './Fila' 
 
 export default class Lista extends Component {
@@ -12,19 +12,19 @@ export default class Lista extends Component {
       }
 
 
-    render() {
-
-    const itemListOut = this.props.itemList.map((item,index) => (
-        <Fila 
-            key = {index} 
-            parametro1 = {item} 
-            onItemPressed={()=> this.props.onItemDeleted(index)} />      
-      ));
-
+    render() {            
+   
+        //rederItem en FlatList hace referencia al componente que se va a pintar
         return(
-        <ScrollView style ={this.props.style}>
-            {itemListOut}
-        </ScrollView>
+        <FlatList 
+            style ={this.props.style}
+            data = {this.props.itemList}
+            renderItem = {(info) => (
+                <Fila 
+                    //key = {index} ya no se necesita porque flatList lo maneja automáticamente
+                    parametro1 = {info.item.value} 
+                    onItemPressed={()=> this.props.onItemDeleted(info.item.key)} /> 
+            )} />
         );   
     }
 
