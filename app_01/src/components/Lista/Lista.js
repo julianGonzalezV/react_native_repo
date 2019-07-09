@@ -8,7 +8,7 @@ export default class Lista extends Component {
     static propTypes = {
         style: ViewPropTypes.style,
         itemList: PropTypes.array,
-        onItemDeleted: PropTypes.func
+        onItemSelected: PropTypes.func
       }
 
 
@@ -23,7 +23,7 @@ export default class Lista extends Component {
                 <Fila 
                     //key = {index} ya no se necesita porque flatList lo maneja automáticamente
                     parametro1 = {info.item.value} 
-                    onItemPressed={()=> this.props.onItemDeleted(info.item.key)} /> 
+                    onItemPressed={()=> this.props.onItemSelected(info.item.key)} /> 
             )} />
         );   
     }

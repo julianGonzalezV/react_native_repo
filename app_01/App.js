@@ -5,44 +5,53 @@ import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
 import Adicionador from './src/components/AddItems/Adicionador' 
 import Lista from './src/components/Lista/Lista' 
-
+import DetalleFila from './src/components/Lista/DetalleFila'
 export default class App extends Component {
 
 
   state ={
-    placeName: '',
-    places: []
+    itemName: '',
+    listItems: [],
+    selectedItem: null
    }
 
-   placeNameChangeHandler = val =>{
+   itemNameChangeHandler = val =>{
     this.setState({
-      placeName: val	
+      itemName: val	
     });
     
    };
 
 
-   deleteByIndex = keyToDelete =>{
+   itemSelectedHandler = key =>{
+    this.setState( prevState => {
+      return {
+        selectedItem: prevState.listItems.find(x => {return x.key === key})
+      }
+
+    });
+
+     /*
     this.setState( prevState => {
       return{
         // Se filtran lo items tales que el id sea diferente al que entra
         places: prevState.places.filter((record)=> {
-          return record.key !== keyToDelete //un boolean
+          return record.key !== key //un boolean
         })	
       }      
-    });
+    });*/
     
    };
 
    buttonClicHandler = val =>{
-    if(this.state.placeName.trim() === ""){
+    if(this.state.itemName.trim() === ""){
       return;
     }
   
     this.setState(prevState => {
       
       return{
-        places: prevState.places.concat({key:Math.random(), value:this.state.placeName})
+        listItems: prevState.listItems.concat({key:Math.random(), value:this.state.itemName})
       }    
     });
     
@@ -65,17 +74,18 @@ export default class App extends Component {
         <Adicionador 
           containerStyle = {styles.inputButton}
           style = {styles.placeInput}
-          onChangeText = {this.placeNameChangeHandler}
-          value = {this.state.placeName}
+          onChangeText = {this.itemNameChangeHandler}
+          value = {this.state.itemName}
           placeholder = "Ingrese los valores aquí"
           buttonStyle = {styles.placeButton}
           buttonOnPress = {this.buttonClicHandler}
           buttonTitle = "Agregar"
-        />        
+        />   
+        <DetalleFila selectedItem={this.state.selectedItem} />    
         <Lista 
           style = {styles.filaContainer}
-          itemList = {this.state.places}
-          onItemDeleted = {this.deleteByIndex}
+          itemList = {this.state.listItems}
+          onItemSelected = {this.itemSelectedHandler}
         />        
     </View>
     );
