@@ -22,7 +22,7 @@ export default class Lista extends Component {
             renderItem = {(info) => (
                 <Fila 
                     //key = {index} ya no se necesita porque flatList lo maneja automáticamente
-                    parametro1 = {info.item.value} 
+                    parametro1 = {info.item} 
                     onItemPressed={()=> this.props.onItemSelected(info.item.key)} /> 
             )} />
         );   

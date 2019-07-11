@@ -9,7 +9,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 const fila = (props) => (
     <TouchableOpacity onPress={props.onItemPressed}>
         <View style={styles.fila} >
-            <Text>{props.parametro1}</Text>
+            <Text>{props.parametro1.name}</Text>
         </View>
     </TouchableOpacity>
     
