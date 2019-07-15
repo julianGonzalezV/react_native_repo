@@ -13,7 +13,7 @@ import {} from './reducers/listItems';
  * RootReducer es un reducer general que irá en el root
  */
 const rootReducer = combineReducers({
-    items: itemsReducer
+    itemsRd: itemsReducer
 });
 
 const configureStore = () => {
