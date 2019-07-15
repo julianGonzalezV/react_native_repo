@@ -11,7 +11,8 @@ const initialState = {
 /**
  * Reducer no es más que un arrow function que recibe 2 parámetros 
  * el primeto es el estado actual y el segundo es el action que se genera para cambiar dicho estado
- * el reducer con estos 2  parámetros ya decide como aplicarlo para ambiar el estado y retornar el siguiente estado
+ * el reducer con estos 2  parámetros ya decide como aplicarlo para ambiar el estado y retornar el siguiente
+ *  estado
  * 
  * IMPORTANTE: son funciones puras que no debe generar side effect
  * 
