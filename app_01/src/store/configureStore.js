@@ -7,7 +7,7 @@
  */
 import { createStore, combineReducers } from 'redux'
 
-import {} from './reducers/listItems';
+import itemsReducer from './reducers/listItems';
 
 /**
  * RootReducer es un reducer general que irá en el root
@@ -24,4 +24,4 @@ const configureStore = () => {
     return createStore(rootReducer);
 }
 
-export default configureStore;
+export default store = configureStore();
