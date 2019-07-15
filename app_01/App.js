@@ -96,7 +96,7 @@ export default class App extends Component{
           placeholder = "Ingrese los valores aquí"
           buttonStyle = {styles.placeButton}
           buttonOnPress = {this.buttonAddClicHandler}
-          buttonTitle = "Agregar"
+          buttonTitle = "mas"
         />   
         <DetalleFila 
           selectedItem={this.state.selectedItem}
