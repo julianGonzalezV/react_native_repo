@@ -52,6 +52,7 @@ class AppContainer extends Component{
             buttonStyle = {styles.placeButton}
             onItemAdded = {this.buttonAddClicHandler}
             buttonTitle = "mas"
+            //itemName = {this.props.itemName}
           />   
           <DetalleFila 
             selectedItem={this.props.selectedItem}

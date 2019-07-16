@@ -16,6 +16,7 @@ export default class AddInput extends Component {
         buttonStyle: ViewPropTypes.style,
         onItemAdded: PropTypes.func,
         buttonTitle: PropTypes.string
+        //itemName: PropTypes.string creo que no va a funcionar por lo de inmutabilidad
       }
 
 

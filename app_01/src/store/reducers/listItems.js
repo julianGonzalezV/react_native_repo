@@ -5,7 +5,7 @@ import { ADD_ITEM, DELETE_ITEM, SELECT_ITEM, DESELECT_ITEM } from '../actions/ac
  * despachada
  */
 const initialState = {
-    itemName: '',
+    itemName: "",
     listItems: [],
     selectedItem: null
 }
