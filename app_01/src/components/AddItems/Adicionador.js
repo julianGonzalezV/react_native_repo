@@ -5,16 +5,37 @@ import { ViewPropTypes } from 'react-native'
 
 
 export default class AddInput extends Component {
+    state = {
+       itemName: ""
+      };
+
     static propTypes = {
         containerStyle: ViewPropTypes.style,
-        style: ViewPropTypes.style,
-        onChangeText: PropTypes.func,
-        value: PropTypes.string,
+        style: ViewPropTypes.style,        
         placeholder: PropTypes.string,
         buttonStyle: ViewPropTypes.style,
-        buttonOnPress :  PropTypes.func,
+        onItemAdded: PropTypes.func,
         buttonTitle: PropTypes.string
       }
+
+
+
+   
+
+
+      itemNameChangedHandler = val => {
+        this.setState({
+          itemName: val
+        });
+      };
+    
+      itemSubmitHandler = () => {
+        if (this.state.itemName.trim() === "") {
+          return;
+        }
+    
+        this.props.onItemAdded(this.state.itemName);
+      };
 
 
       render() {
@@ -22,13 +43,13 @@ export default class AddInput extends Component {
             <View style={this.props.containerStyle}>
                 <TextInput 
                 placeholder= {this.props.placeholder}
-                value={this.props.value} 
-                onChangeText={this.props.onChangeText}
+                value={this.state.itemName}
+                onChangeText={this.itemNameChangedHandler}
                 style={this.props.style}/>
                 <Button
                     title={this.props.buttonTitle}
                     style={this.props.buttonStyle}
-                    onPress={this.props.buttonOnPress}
+                    onPress={this.itemSubmitHandler}
                 />
             </View>
           );   

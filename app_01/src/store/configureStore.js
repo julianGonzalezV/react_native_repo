@@ -24,4 +24,4 @@ const configureStore = () => {
     return createStore(rootReducer);
 }
 
-export default store = configureStore();
+export default configureStore;

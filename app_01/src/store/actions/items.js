@@ -12,6 +12,7 @@ import { ADD_ITEM, DELETE_ITEM, DESELECT_ITEM, SELECT_ITEM } from './actionTypes
   * @param {*} itemName 
   */
 export const addItem = (itemName) => {
+  
     return{
         type: ADD_ITEM,
         itemNameOut: itemName
@@ -19,6 +20,7 @@ export const addItem = (itemName) => {
 };
 
 export const deleteItem = () => {
+  console.log('entra a deleteItem');
     return{
         type: DELETE_ITEM
       };

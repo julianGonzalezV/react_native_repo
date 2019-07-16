@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             // Se filtran lo items tales que el id sea diferente al que entra
-            listItems: state.listItems.listItems.filter((record)=> {
+            listItems: state.listItems.filter((record)=> {
                 return record.key !== state.selectedItem.key  //un boolean
             }),
             selectedItem:null
